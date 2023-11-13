@@ -8,14 +8,9 @@ Runs the mock json-server from db.json file in frontend directory.
 
 See the other usage here: [https://github.com/typicode/json-server](https://github.com/typicode/json-server)
 
-### `npm start`
+### `npm run dev`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
+Runs the app in the development mode.
 
 # React + TypeScript + Vite
 
