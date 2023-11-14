@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, Outlet, useLocation } from 'react-router-dom'
-import { Tabs, Tab, Box, Typography } from '@mui/material'
+import { Tabs, Tab, Box, Typography, Container } from '@mui/material'
 
 const MENU_ITEMS = [
     { path: '/', label: 'Home' },
@@ -16,6 +16,7 @@ function Layout() {
                 variant="h1"
                 align="center"
                 color="grey.700"
+                fontWeight={600}
                 sx={{
                     backgroundcolor: 'primary',
                     backgroundImage: `linear-gradient(45deg, #5514B4, #FF80FF)`,
@@ -27,7 +28,7 @@ function Layout() {
                     paddingY: 4,
                 }}
             >
-                TODO-IST
+                {'TODO-IST'}
             </Typography>
 
             <Tabs
@@ -41,14 +42,18 @@ function Layout() {
             >
                 {MENU_ITEMS.map((menuItem) => (
                     <Tab
+                        key={menuItem.path}
                         value={menuItem.path}
-                        label={menuItem.label}
                         to={menuItem.path}
+                        label={menuItem.label}
                         component={Link}
                     />
                 ))}
             </Tabs>
-            <Outlet />
+
+            <Container maxWidth="lg">
+                <Outlet />
+            </Container>
         </Box>
     )
 }

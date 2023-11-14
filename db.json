@@ -1,3 +1,37 @@
 {
-    "list" : []
+    "todos": [
+        {
+            "id": "1",
+            "title": "Todo 1",
+            "deadline": "2023-12-01",
+            "items": [
+                { "order": 1, "name": "Item 1", "checked": false },
+                { "order": 2, "name": "Item 2", "checked": true },
+                { "order": 3, "name": "Item 3", "checked": false }
+            ],
+            "date": "2023-11-14T10:00:00Z"
+        },
+        {
+            "id": "2",
+            "title": "Todo 2",
+            "deadline": "2023-12-15",
+            "items": [
+                { "order": 1, "name": "Task A", "checked": false },
+                { "order": 2, "name": "Task B", "checked": false },
+                { "order": 3, "name": "Task C", "checked": true }
+            ],
+            "date": "2023-11-14T11:15:00Z"
+        },
+        {
+            "id": "3",
+            "title": "Todo 3",
+            "deadline": "2023-11-30",
+            "items": [
+                { "order": 1, "name": "Job X", "checked": true },
+                { "order": 2, "name": "Job Y", "checked": true },
+                { "order": 3, "name": "Job Z", "checked": false }
+            ],
+            "date": "2023-11-14T09:30:00Z"
+        }
+    ]
 }
