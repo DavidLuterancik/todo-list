@@ -12,6 +12,7 @@ import {
     createBrowserRouter,
     createRoutesFromElements,
 } from 'react-router-dom'
+import About from './pages/about.tsx'
 
 
 const router = createBrowserRouter(
@@ -19,7 +20,8 @@ const router = createBrowserRouter(
         <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="todos" element={<ToDoLists />} />
-            <Route path="todos/:id" element={<ToDoList />} />
+            <Route path="todo/:id" element={<ToDoList />} />
+            <Route path="about" element={<About />} />
             <Route path="*" element={<NotFoundPage />} />
         </Route>
     )

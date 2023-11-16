@@ -5,6 +5,7 @@ import { Tabs, Tab, Box, Typography, Container } from '@mui/material'
 const MENU_ITEMS = [
     { path: '/', label: 'Home' },
     { path: '/todos', label: 'Todo Lists' },
+    { path: '/about', label: 'About' },
 ]
 
 function Layout() {

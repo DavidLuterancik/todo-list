@@ -26,13 +26,13 @@ export const toDoListsApi = createApi({
         }),
         getTodo: builder.query<Todo, string>({
             query: (id) => {
-                return `/todo/${id}}`
+                return `/todos/${id}`
             },
             providesTags: ['todo'],
         }),
         putTodo: builder.mutation<void, Todo>({
             query: ({ id, ...rest }) => ({
-                url: `/todo/${id}`,
+                url: `/todos/${id}`,
                 method: 'PUT',
                 body: rest,
             }),
@@ -40,7 +40,7 @@ export const toDoListsApi = createApi({
         }),
         deleteTodo: builder.mutation<void, Todo>({
             query: ({ id }) => ({
-                url: `/todo/${id}`,
+                url: `/todos/${id}`,
                 method: 'DELETE',
             }),
             invalidatesTags: ['todo'],

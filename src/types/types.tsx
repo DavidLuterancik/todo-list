@@ -3,22 +3,26 @@ export enum Sorter {
     Oldest = 'Oldest',
 }
 
+export enum ItemStatus {
+    All = 'All',
+    Active = 'Active',
+    Completed = 'Completed',
+}
+
 export type TodoQuery = {
     q: string
-    category?: string
     sorter: string
 }
 
 export type Todo = {
     id?: string
     title: string
-    deadline: string
     items: TodoItem[]
     date: string
 }
 
 export type TodoItem = {
-    order: number
     name: string
     checked: boolean
+    deadline: string | null
 }

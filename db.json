@@ -3,35 +3,68 @@
         {
             "id": "1",
             "title": "Todo 1",
-            "deadline": "2023-12-01",
             "items": [
-                { "order": 1, "name": "Item 1", "checked": false },
-                { "order": 2, "name": "Item 2", "checked": true },
-                { "order": 3, "name": "Item 3", "checked": false }
+                {
+                    "name": "Item 1",
+                    "checked": false,
+                    "deadline": "2023-11-14T10:00:00Z"
+                },
+                {
+                    "name": "Item 2",
+                    "checked": true,
+                    "deadline": null
+                },
+                {
+                    "name": "Item 3",
+                    "checked": false,
+                    "deadline": null
+                }
             ],
-            "date": "2023-11-14T10:00:00Z"
+            "date": "2023-10-25T17:16:30.457Z"
         },
         {
             "id": "2",
             "title": "Todo 2",
-            "deadline": "2023-12-15",
             "items": [
-                { "order": 1, "name": "Task A", "checked": false },
-                { "order": 2, "name": "Task B", "checked": false },
-                { "order": 3, "name": "Task C", "checked": true }
+                {
+                    "name": "Task A",
+                    "checked": false,
+                    "deadline": null
+                },
+                {
+                    "name": "Task B",
+                    "checked": false,
+                    "deadline": null
+                },
+                {
+                    "name": "Task C",
+                    "checked": true,
+                    "deadline": null
+                }
             ],
-            "date": "2023-11-14T11:15:00Z"
+            "date": "2023-10-26T16:40:56.760Z"
         },
         {
             "id": "3",
             "title": "Todo 3",
-            "deadline": "2023-11-30",
             "items": [
-                { "order": 1, "name": "Job X", "checked": true },
-                { "order": 2, "name": "Job Y", "checked": true },
-                { "order": 3, "name": "Job Z", "checked": false }
+                {
+                    "name": "Job X",
+                    "checked": true,
+                    "deadline": null
+                },
+                {
+                    "name": "Job Y",
+                    "checked": true,
+                    "deadline": null
+                },
+                {
+                    "name": "Job Z",
+                    "checked": false,
+                    "deadline": null
+                }
             ],
-            "date": "2023-11-14T09:30:00Z"
+            "date": "2023-10-29T17:33:54.920Z"
         }
     ]
 }
