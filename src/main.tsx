@@ -4,6 +4,7 @@ import App from './App.tsx'
 import { CssBaseline, ThemeProvider, createTheme } from '@mui/material'
 import { Provider } from 'react-redux'
 import { store } from './store.ts'
+import './index.css'
 
 const theme = createTheme({
   palette: {

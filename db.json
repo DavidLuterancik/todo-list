@@ -1,70 +1,35 @@
 {
-    "todos": [
+  "todos": [
+    {
+      "title": "Test Tasks",
+      "date": "2023-11-18T20:03:17.509Z",
+      "items": [
         {
-            "id": "1",
-            "title": "Todo 1",
-            "items": [
-                {
-                    "name": "Item 1",
-                    "checked": false,
-                    "deadline": "2023-11-14T10:00:00Z"
-                },
-                {
-                    "name": "Item 2",
-                    "checked": true,
-                    "deadline": null
-                },
-                {
-                    "name": "Item 3",
-                    "checked": false,
-                    "deadline": null
-                }
-            ],
-            "date": "2023-10-25T17:16:30.457Z"
+          "name": "New Task 1",
+          "checked": false,
+          "deadline": "2023-10-31T23:00:00.000Z",
+          "id": "cff3110d-bb78-4e23-bc06-7bcd43c9c9e6"
         },
         {
-            "id": "2",
-            "title": "Todo 2",
-            "items": [
-                {
-                    "name": "Task A",
-                    "checked": false,
-                    "deadline": null
-                },
-                {
-                    "name": "Task B",
-                    "checked": false,
-                    "deadline": null
-                },
-                {
-                    "name": "Task C",
-                    "checked": true,
-                    "deadline": null
-                }
-            ],
-            "date": "2023-10-26T16:40:56.760Z"
+          "name": "New Task 2",
+          "checked": true,
+          "deadline": null,
+          "id": "96bf2f21-0db9-4bd6-8e7a-f3820c664544"
         },
         {
-            "id": "3",
-            "title": "Todo 3",
-            "items": [
-                {
-                    "name": "Job X",
-                    "checked": true,
-                    "deadline": null
-                },
-                {
-                    "name": "Job Y",
-                    "checked": true,
-                    "deadline": null
-                },
-                {
-                    "name": "Job Z",
-                    "checked": false,
-                    "deadline": null
-                }
-            ],
-            "date": "2023-10-29T17:33:54.920Z"
+          "name": "New Task 3",
+          "checked": false,
+          "deadline": null,
+          "id": "21d1cb50-f81f-4352-a6ca-63d1ac0a3bd7"
+        },
+        {
+          "name": "New Task 4",
+          "checked": true,
+          "deadline": "2023-11-01T23:00:00.000Z",
+          "id": "9645b740-f420-4b40-b204-4d1745dd30cf"
         }
-    ]
+      ],
+      "id": 1
+    }
+  ]
 }

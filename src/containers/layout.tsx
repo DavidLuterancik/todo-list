@@ -1,18 +1,14 @@
 import React from 'react'
-import { Link, Outlet, useLocation } from 'react-router-dom'
-import { Tabs, Tab, Box, Typography, Container } from '@mui/material'
-
-const MENU_ITEMS = [
-    { path: '/', label: 'Home' },
-    { path: '/todos', label: 'Todo Lists' },
-    { path: '/about', label: 'About' },
-]
+import { Outlet } from 'react-router-dom'
+import { Box, Typography, Container } from '@mui/material'
+import Nav from '../components/navigation/nav'
+import SnackbarComponent from '../components/snackbar/snackbar'
 
 function Layout() {
-    const { pathname } = useLocation()
-
     return (
-        <Box sx={{ minHeight: '100vh' }}>
+        <Box sx={{ minHeight: '100vh', mb: 8 }}>
+            <SnackbarComponent />
+
             <Typography
                 variant="h1"
                 align="center"
@@ -32,25 +28,7 @@ function Layout() {
                 {'TODO-IST'}
             </Typography>
 
-            <Tabs
-                sx={{
-                    borderBottom: 1,
-                    borderColor: 'divider',
-                    marginBottom: 4,
-                }}
-                centered
-                value={pathname}
-            >
-                {MENU_ITEMS.map((menuItem) => (
-                    <Tab
-                        key={menuItem.path}
-                        value={menuItem.path}
-                        to={menuItem.path}
-                        label={menuItem.label}
-                        component={Link}
-                    />
-                ))}
-            </Tabs>
+            <Nav />
 
             <Container maxWidth="lg">
                 <Outlet />

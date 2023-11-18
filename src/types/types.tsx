@@ -22,7 +22,26 @@ export type Todo = {
 }
 
 export type TodoItem = {
-    name: string
+    id: string,
+    name: string,
     checked: boolean
     deadline: string | null
 }
+
+export type TodoProps = {
+    todo: Todo
+}
+
+export type ToDoGridProps = {
+    error: boolean,
+    isFetching: boolean,
+    todos: Todo[]
+}
+
+export type SnackbarObject = {
+    show: boolean,
+    type?: SnackbarTypes,
+    text?: string
+}
+
+export type SnackbarTypes = 'error' | 'success' | 'info';

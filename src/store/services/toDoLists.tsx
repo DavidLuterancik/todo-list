@@ -12,7 +12,7 @@ export const toDoListsApi = createApi({
             },
             providesTags: ['todos'],
         }),
-        postTodo: builder.mutation<void, Todo>({
+        postTodo: builder.mutation<Todo, Todo>({
             query: (data) => ({
                 url: '/todos',
                 method: 'POST',
@@ -30,33 +30,29 @@ export const toDoListsApi = createApi({
             },
             providesTags: ['todo'],
         }),
-        putTodo: builder.mutation<void, Todo>({
+        putTodo: builder.mutation<Todo, Todo>({
             query: ({ id, ...rest }) => ({
                 url: `/todos/${id}`,
                 method: 'PUT',
                 body: rest,
             }),
-            invalidatesTags: ['todo'],
+            invalidatesTags: ['todo', 'todos'],
         }),
         deleteTodo: builder.mutation<void, Todo>({
-            query: ({ id }) => ({
+            query: (id) => ({
                 url: `/todos/${id}`,
                 method: 'DELETE',
             }),
-            invalidatesTags: ['todo'],
+            invalidatesTags: ['todos', 'todo'],
         }),
     }),
 })
 
-function buildQuery({ q, category, sorter }: TodoQuery) {
+function buildQuery({ q, sorter }: TodoQuery) {
     const searchParams = new URLSearchParams()
 
     if (q) {
         searchParams.append('q', q)
-    }
-
-    if (category) {
-        searchParams.append('category', category)
     }
 
     searchParams.append('_sort', 'date')
