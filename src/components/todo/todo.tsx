@@ -87,7 +87,7 @@ export default function ToDo({ todo }: TodoProps) {
                                         }}
                                     >
                                         {moment(item.deadline).format(
-                                            'DD/MM/YYYY'
+                                            import.meta.env.VITE_DATE_FORMAT
                                         )}
                                     </Typography>
                                 )}
@@ -107,7 +107,7 @@ export default function ToDo({ todo }: TodoProps) {
                             marginRight: 1,
                         }}
                     />
-                    {moment(todo.date).format('DD/MM/YYYY')}
+                    {moment(todo.date).format(import.meta.env.VITE_DATE_FORMAT)}
                 </Typography>
             </Paper>
         </Link>

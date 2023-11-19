@@ -73,6 +73,7 @@ function initItem() {
 }
 
 function ToDoPage() {
+    
     const { id: idParam } = useParams()
 
     const [itemStatus, setItemStatus] = useState<ItemStatus>(ItemStatus.All)
@@ -90,48 +91,9 @@ function ToDoPage() {
         mode: 'all',
     })
 
-    const {
-        control,
-        handleSubmit,
-        // formState: { isValid, isSubmitted, isSubmitting, errors },
-        watch,
-    } = methods
+    const { control, handleSubmit, watch } = methods
 
-    const onSubmit: SubmitHandler<Todo> = (data) => {
-        const id = todo?.id
-        id ? handleEdit(Object.assign(data, { id })) : handleSave(data)
-    }
-
-    const [putTodo] = usePutTodoMutation()
-    const [postTodo] = usePostTodoMutation()
-    const [deleteTodo] = useDeleteTodoMutation()
-    const navigate = useNavigate()
-    const dispatch = useDispatch()
-
-    function handleEdit(data) {
-        putTodo(data)
-            .unwrap()
-            .then(() => {
-                dispatch(
-                    setShowSnackbar({
-                        show: true,
-                        type: 'success',
-                        text: `Edited ToDo: ${todo?.title}`,
-                    })
-                )
-                navigate('/todos')
-            })
-            .catch(() =>
-                dispatch(
-                    setShowSnackbar({
-                        show: true,
-                        type: 'error',
-                    })
-                )
-            )
-    }
-
-    function handleSave(data) {
+    const onSubmitSave: SubmitHandler<Todo> = (data) => {
         postTodo(data)
             .unwrap()
             .then((todo: Todo) => {
@@ -153,6 +115,36 @@ function ToDoPage() {
                 )
             )
     }
+
+    const onSubmitEdit: SubmitHandler<Todo> = (data) => {
+        const id = todo?.id
+        putTodo(Object.assign(data, { id }))
+            .unwrap()
+            .then(() => {
+                dispatch(
+                    setShowSnackbar({
+                        show: true,
+                        type: 'success',
+                        text: `Edited ToDo: ${todo?.title}`,
+                    })
+                )
+                navigate('/todos')
+            })
+            .catch(() =>
+                dispatch(
+                    setShowSnackbar({
+                        show: true,
+                        type: 'error',
+                    })
+                )
+            )
+    }
+
+    const [putTodo] = usePutTodoMutation()
+    const [postTodo] = usePostTodoMutation()
+    const [deleteTodo] = useDeleteTodoMutation()
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
 
     function handleDelete() {
         const id = todo?.id
@@ -195,8 +187,11 @@ function ToDoPage() {
 
     return (
         <Container maxWidth="sm">
-            <LocalizationProvider dateAdapter={AdapterMoment}>
-                <FormProvider {...methods}>
+            <LocalizationProvider
+                dateAdapter={AdapterMoment}
+                adapterLocale="sk-SK"
+            >
+                <FormProvider {...methods} key={todo?.id}>
                     <form>
                         <Paper
                             sx={{
@@ -259,7 +254,7 @@ function ToDoPage() {
                             </Stack>
 
                             <Stack direction={'column'} spacing={2}>
-                                <Typography variant="h6">{'ToDo'}</Typography>
+                                <Typography variant="h6">{`ToDo`}</Typography>
                                 <Controller
                                     name={'title'}
                                     control={control}
@@ -275,6 +270,7 @@ function ToDoPage() {
                                             onChange={onChange}
                                             value={value}
                                             fullWidth
+                                            required
                                         />
                                     )}
                                 />
@@ -297,6 +293,7 @@ function ToDoPage() {
                                             value={value && moment(value)}
                                             onChange={onChange}
                                             fullWidth
+                                            format={import.meta.env.VITE_DATE_FORMAT}
                                             slotProps={{
                                                 textField: {
                                                     required: true,
@@ -328,7 +325,10 @@ function ToDoPage() {
                                     // }
 
                                     return (
-                                        <div className="relative">
+                                        <div
+                                            className="relative"
+                                            key={`${index}${item.id}`}
+                                        >
                                             <ListItem
                                                 dense
                                                 alignItems="flex-start"
@@ -462,7 +462,7 @@ function ToDoPage() {
                                     variant="contained"
                                     size="large"
                                     endIcon={<Edit />}
-                                    onClick={handleSubmit(onSubmit)}
+                                    onClick={handleSubmit(onSubmitEdit)}
                                 >
                                     {'Edit'}
                                 </Button>
@@ -471,7 +471,7 @@ function ToDoPage() {
                                     variant="contained"
                                     size="large"
                                     endIcon={<Save />}
-                                    onClick={handleSubmit(onSubmit)}
+                                    onClick={handleSubmit(onSubmitSave)}
                                     type="submit"
                                 >
                                     {'Save'}
@@ -492,7 +492,7 @@ function ToDoPage() {
                     </form>
                 </FormProvider>
             </LocalizationProvider>
-            <pre>{JSON.stringify(watch(), null, 2)}</pre>
+            {/* <pre>{JSON.stringify(watch(), null, 2)}</pre> */}
         </Container>
     )
 }
