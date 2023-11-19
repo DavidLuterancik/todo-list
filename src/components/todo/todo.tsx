@@ -103,7 +103,6 @@ export default function ToDo({ todo }: TodoProps) {
                     gutterBottom
                 >
                     <CalendarIcon
-                        fontSize="14px"
                         sx={{
                             marginRight: 1,
                         }}

@@ -15,7 +15,7 @@ export type TodoQuery = {
 }
 
 export type Todo = {
-    id?: string
+    id: string
     title: string
     items: TodoItem[]
     date: string

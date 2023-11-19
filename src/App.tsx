@@ -2,7 +2,7 @@ import React from 'react'
 
 import Layout from './containers/layout.tsx'
 import ToDoLists from './pages/todoLists/todoLists.tsx'
-import ToDoList from './pages/todoList'
+import ToDoPage from './pages/todo/todoPage.tsx'
 import NotFoundPage from './notFoundPage'
 
 import {
@@ -17,7 +17,7 @@ const router = createBrowserRouter(
     createRoutesFromElements(
         <Route path="/" element={<Layout />}>
             <Route index path="todos" element={<ToDoLists />} />
-            <Route path="todo/:id" element={<ToDoList />} />
+            <Route path="todo/:id" element={<ToDoPage />} />
             <Route path="about" element={<About />} />
             <Route path="*" element={<NotFoundPage />} />
         </Route>
