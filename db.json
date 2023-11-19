@@ -81,6 +81,16 @@
           "name": "Change todo list min size",
           "checked": false,
           "deadline": null
+        },
+        {
+          "name": "Add deploy to githubpages",
+          "checked": false,
+          "deadline": null
+        },
+        {
+          "name": "Change to mockapi",
+          "checked": false,
+          "deadline": null
         }
       ],
       "date": "2023-11-19T16:28:04.736Z",
