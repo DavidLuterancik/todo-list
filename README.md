@@ -2,15 +2,21 @@
 
 In the project directory, you can run:
 
+### `npm run dev`
+
+Runs the app in the development mode.
+
 ### `json-server --watch db.json --port 3004`
 
 Runs the mock json-server from db.json file in frontend directory.
 
 See the other usage here: [https://github.com/typicode/json-server](https://github.com/typicode/json-server)
 
-### `npm run dev`
+### `npm run deploy`
 
-Runs the app in the development mode.
+Deploys the app to github pages
+
+See the running version here: [https://davidluterancik.github.io/todo-list/](https://davidluterancik.github.io/todo-list/)
 
 # React + TypeScript + Vite
 
