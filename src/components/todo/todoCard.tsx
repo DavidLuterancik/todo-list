@@ -17,7 +17,7 @@ import { blue } from '@mui/material/colors'
 const DATE_FORMAT = import.meta.env.VITE_DATE_FORMAT
 
 function getDeadlineColor({ checked, deadline }: TodoItem) {
-    const isPast = moment(deadline).diff(moment()) > 0
+    const isPast = moment(deadline).diff(moment()) < 0
 
     if (!checked && isPast) {
         return 'error'
