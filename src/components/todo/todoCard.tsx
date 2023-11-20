@@ -6,13 +6,14 @@ import {
     List,
     ListItem,
     Paper,
-    Stack,
     Typography,
 } from '@mui/material'
 import moment from 'moment'
 import { Link } from 'react-router-dom'
 import { CalendarIcon } from '@mui/x-date-pickers'
 import { blue } from '@mui/material/colors'
+
+const DATE_FORMAT = import.meta.env.VITE_DATE_FORMAT
 
 export default function ToDo({ todo }: TodoProps) {
     return (
@@ -43,42 +44,43 @@ export default function ToDo({ todo }: TodoProps) {
                                 size="small"
                             />
 
-                            <Stack
-                                direction="row"
-                                divider={
-                                    <Divider orientation="vertical" flexItem />
+                            <Typography
+                                variant="body1"
+                                color={
+                                    item.checked
+                                        ? 'textSecondary'
+                                        : 'textPrimary'
                                 }
-                                spacing={2}
                                 sx={{
-                                    display: 'flex',
-                                    justifyContent: 'center',
-                                    alignItems: 'center',
+                                    fontWeight: 'bold',
+                                    textDecoration: item.checked
+                                        ? 'line-through'
+                                        : 'none',
+                                    width: '100%',
                                 }}
                             >
-                                <Typography
-                                    variant="body1"
-                                    color={
-                                        item.checked
-                                            ? 'textSecondary'
-                                            : 'textPrimary'
-                                    }
-                                    sx={{
-                                        fontWeight: 'bold',
-                                        textDecoration: item.checked
-                                            ? 'line-through'
-                                            : 'none',
-                                    }}
-                                >
-                                    {item.name}
-                                </Typography>
+                                {item.name}
+                            </Typography>
 
-                                {item.deadline && (
+                            {item.deadline && (
+                                <>
+                                    <Divider
+                                        orientation="vertical"
+                                        flexItem
+                                        sx={{
+                                            mx: 1,
+                                        }}
+                                    />
                                     <Typography
                                         variant="body2"
                                         color={
                                             item.checked
-                                                ? 'textSecondary'
-                                                : 'textPrimary'
+                                                ? moment(item.deadline).isAfter(
+                                                      moment()
+                                                  )
+                                                    ? 'textSecondary'
+                                                    : 'textSecondary'
+                                                : 'error'
                                         }
                                         sx={{
                                             textDecoration: item.checked
@@ -87,11 +89,11 @@ export default function ToDo({ todo }: TodoProps) {
                                         }}
                                     >
                                         {moment(item.deadline).format(
-                                            import.meta.env.VITE_DATE_FORMAT
+                                            DATE_FORMAT
                                         )}
                                     </Typography>
-                                )}
-                            </Stack>
+                                </>
+                            )}
                         </ListItem>
                     ))}
                 </List>
@@ -107,7 +109,7 @@ export default function ToDo({ todo }: TodoProps) {
                             marginRight: 1,
                         }}
                     />
-                    {moment(todo.date).format(import.meta.env.VITE_DATE_FORMAT)}
+                    {moment(todo.date).format(DATE_FORMAT)}
                 </Typography>
             </Paper>
         </Link>

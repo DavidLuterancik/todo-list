@@ -12,11 +12,13 @@ import {
     createRoutesFromElements,
 } from 'react-router-dom'
 import About from './pages/about.tsx'
+import CreateToDoPage from './pages/todo/createTodoPage.tsx'
 
 const router = createBrowserRouter(
     createRoutesFromElements(
         <Route path="/" element={<Layout />}>
-            <Route index path="todos" element={<ToDoLists />} />
+            <Route index element={<ToDoLists />} />
+            <Route path="todo/new" element={<CreateToDoPage />} />
             <Route path="todo/:id" element={<ToDoPage />} />
             <Route path="about" element={<About />} />
             <Route path="*" element={<NotFoundPage />} />

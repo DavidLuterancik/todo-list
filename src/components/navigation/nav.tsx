@@ -3,7 +3,7 @@ import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
 const MENU_ITEMS = [
-    { path: '/todos', label: 'Todo Lists' },
+    { path: '/', label: 'Todo Lists' },
     { path: '/about', label: 'About' },
 ]
 

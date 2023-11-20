@@ -33,7 +33,7 @@
         {
           "name": "TEE",
           "checked": false,
-          "deadline": null
+          "deadline": "2023-11-08T23:00:00.000Z"
         },
         {
           "name": "Bee",
@@ -53,8 +53,13 @@
       "title": "//FIX NEEDED",
       "items": [
         {
+          "name": "Add order up down for items",
+          "checked": true,
+          "deadline": null
+        },
+        {
           "name": "Defaultdata not showing proper data for form",
-          "checked": false,
+          "checked": true,
           "deadline": "2023-11-19T23:00:00.000Z"
         },
         {
@@ -63,23 +68,13 @@
           "deadline": null
         },
         {
-          "name": "Add order up down for items",
-          "checked": false,
-          "deadline": null
-        },
-        {
           "name": "Fix item status",
-          "checked": false,
+          "checked": true,
           "deadline": null
         },
         {
           "name": "Rendering the list on main page with longer text",
-          "checked": false,
-          "deadline": null
-        },
-        {
-          "name": "Change todo list min size",
-          "checked": false,
+          "checked": true,
           "deadline": null
         },
         {

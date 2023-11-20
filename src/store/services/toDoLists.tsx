@@ -38,7 +38,7 @@ export const toDoListsApi = createApi({
             }),
             invalidatesTags: ['todo', 'todos'],
         }),
-        deleteTodo: builder.mutation<void, Todo>({
+        deleteTodo: builder.mutation<void, string>({
             query: (id) => ({
                 url: `/todos/${id}`,
                 method: 'DELETE',

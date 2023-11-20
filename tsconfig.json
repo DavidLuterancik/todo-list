@@ -22,7 +22,9 @@
 
     /* MUI5 */
     "noImplicitThis": true,
-    "strictNullChecks": true
+    "strictNullChecks": true,
+
+    "types": ["vite/client"],
   },
   "include": ["src/**/*.d.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]

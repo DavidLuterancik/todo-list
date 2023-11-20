@@ -1,16 +1,18 @@
 import React from 'react'
-import { Typography } from '@mui/material'
+import { Container, Typography } from '@mui/material'
+import BackButton from './components/backButton/backButton'
 
 function NotFoundPage() {
     return (
-        <>
+        <Container maxWidth="md">
+            <BackButton />
             <Typography variant="h1" color="textSecondary">
                 404
             </Typography>
             <Typography variant="h5" color="textSecondary">
                 Nothing to see here 👀
             </Typography>
-        </>
+        </Container>
     )
 }
 
