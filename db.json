@@ -1,95 +1,84 @@
 {
-  "todos": [
-    {
-      "title": "NewWEEEE",
-      "items": [
+    "todos": [
         {
-          "name": "Test test test",
-          "checked": false,
-          "deadline": null
+            "title": "Test Todo",
+            "date": "2023-11-20T16:31:56.512Z",
+            "items": [
+                {
+                    "name": "Task",
+                    "checked": false,
+                    "deadline": null
+                },
+                {
+                    "name": "Task deadline",
+                    "checked": false,
+                    "deadline": "2027-11-12T23:00:00.000Z"
+                },
+                {
+                    "name": "Task dedadline after",
+                    "checked": false,
+                    "deadline": "2023-11-18T23:00:00.000Z"
+                },
+                {
+                    "name": "Task complete",
+                    "checked": true,
+                    "deadline": null
+                },
+                {
+                    "name": "Task complete deadline",
+                    "checked": true,
+                    "deadline": "2023-11-24T23:00:00.000Z"
+                },
+                {
+                    "name": "Task complete deadline after",
+                    "checked": true,
+                    "deadline": "2023-11-10T23:00:00.000Z"
+                }
+            ],
+            "id": "1"
         },
+
         {
-          "name": "Beta",
-          "checked": false,
-          "deadline": null
-        },
-        {
-          "name": "test",
-          "checked": true,
-          "deadline": null
-        },
-        {
-          "name": "eee",
-          "checked": true,
-          "deadline": null
+            "title": "//FIX NEEDED",
+            "items": [
+                {
+                    "name": "Add order up down for items",
+                    "checked": true,
+                    "deadline": null
+                },
+                {
+                    "name": "Defaultdata not showing proper data for form",
+                    "checked": true,
+                    "deadline": "2023-11-19T23:00:00.000Z"
+                },
+                {
+                    "name": "When changes are made, dont let user leave the page",
+                    "checked": false,
+                    "deadline": null
+                },
+                {
+                    "name": "Fix item status",
+                    "checked": true,
+                    "deadline": null
+                },
+                {
+                    "name": "Rendering the list on main page with longer text",
+                    "checked": true,
+                    "deadline": null
+                },
+                {
+                    "name": "Add deploy to githubpages",
+                    "checked": false,
+                    "deadline": null
+                },
+                {
+                    "name": "Change to mockapi",
+                    "checked": false,
+                    "deadline": null
+                }
+            ],
+            "date": "2023-11-19T16:28:04.736Z",
+            "id": 9
         }
-      ],
-      "date": "2013-11-07T23:00:00.000Z",
-      "id": 7
-    },
-    {
-      "title": "T33414",
-      "items": [
-        {
-          "name": "TEE",
-          "checked": false,
-          "deadline": "2023-11-08T23:00:00.000Z"
-        },
-        {
-          "name": "Bee",
-          "checked": false,
-          "deadline": null
-        },
-        {
-          "name": "aaa",
-          "checked": true,
-          "deadline": null
-        }
-      ],
-      "date": "2023-11-19T15:34:27.583Z",
-      "id": 8
-    },
-    {
-      "title": "//FIX NEEDED",
-      "items": [
-        {
-          "name": "Add order up down for items",
-          "checked": true,
-          "deadline": null
-        },
-        {
-          "name": "Defaultdata not showing proper data for form",
-          "checked": true,
-          "deadline": "2023-11-19T23:00:00.000Z"
-        },
-        {
-          "name": "When changes are made, dont let user leave the page",
-          "checked": false,
-          "deadline": null
-        },
-        {
-          "name": "Fix item status",
-          "checked": true,
-          "deadline": null
-        },
-        {
-          "name": "Rendering the list on main page with longer text",
-          "checked": true,
-          "deadline": null
-        },
-        {
-          "name": "Add deploy to githubpages",
-          "checked": false,
-          "deadline": null
-        },
-        {
-          "name": "Change to mockapi",
-          "checked": false,
-          "deadline": null
-        }
-      ],
-      "date": "2023-11-19T16:28:04.736Z",
-      "id": 9
-    }
-  ]
+    ]
 }

@@ -5,6 +5,7 @@ import {
     Divider,
     List,
     ListItem,
+    ListItemText,
     Paper,
     Typography,
 } from '@mui/material'
@@ -14,6 +15,15 @@ import { CalendarIcon } from '@mui/x-date-pickers'
 import { blue } from '@mui/material/colors'
 
 const DATE_FORMAT = import.meta.env.VITE_DATE_FORMAT
+
+function getDeadlineColor({ checked, deadline }: TodoItem) {
+    const isPast = moment(deadline).diff(moment()) > 0
+
+    if (!checked && isPast) {
+        return 'error'
+    }
+    return 'textSecondary'
+}
 
 export default function ToDo({ todo }: TodoProps) {
     return (
@@ -44,56 +54,44 @@ export default function ToDo({ todo }: TodoProps) {
                                 size="small"
                             />
 
-                            <Typography
-                                variant="body1"
-                                color={
-                                    item.checked
-                                        ? 'textSecondary'
-                                        : 'textPrimary'
-                                }
-                                sx={{
-                                    fontWeight: 'bold',
-                                    textDecoration: item.checked
-                                        ? 'line-through'
-                                        : 'none',
-                                    width: '100%',
-                                }}
-                            >
-                                {item.name}
-                            </Typography>
-
-                            {item.deadline && (
-                                <>
-                                    <Divider
-                                        orientation="vertical"
-                                        flexItem
-                                        sx={{
-                                            mx: 1,
-                                        }}
-                                    />
+                            <ListItemText
+                                primary={
                                     <Typography
-                                        variant="body2"
+                                        variant="body1"
                                         color={
                                             item.checked
-                                                ? moment(item.deadline).isAfter(
-                                                      moment()
-                                                  )
-                                                    ? 'textSecondary'
-                                                    : 'textSecondary'
-                                                : 'error'
+                                                ? 'textSecondary'
+                                                : 'textPrimary'
                                         }
                                         sx={{
+                                            fontWeight: 'bold',
                                             textDecoration: item.checked
                                                 ? 'line-through'
                                                 : 'none',
+                                            width: '100%',
                                         }}
                                     >
-                                        {moment(item.deadline).format(
-                                            DATE_FORMAT
-                                        )}
+                                        {item.name}
                                     </Typography>
-                                </>
-                            )}
+                                }
+                                secondary={
+                                    item.deadline && (
+                                        <Typography
+                                            variant="body2"
+                                            color={getDeadlineColor(item)}
+                                            sx={{
+                                                textDecoration: item.checked
+                                                    ? 'line-through'
+                                                    : 'none',
+                                            }}
+                                        >
+                                            {moment(item.deadline).format(
+                                                DATE_FORMAT
+                                            )}
+                                        </Typography>
+                                    )
+                                }
+                            />
                         </ListItem>
                     ))}
                 </List>

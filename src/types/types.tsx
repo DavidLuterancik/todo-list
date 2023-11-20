@@ -1,4 +1,4 @@
-import { SubmitHandler } from 'react-hook-form'
+import { FieldArrayWithId, SubmitHandler } from 'react-hook-form'
 
 export enum Sorter {
     Newest = 'Newest',
@@ -24,7 +24,7 @@ export type Todo = {
 }
 
 export type TodoItem = {
-    id: string
+    id?: string
     name: string
     checked: boolean
     deadline: string | null
@@ -37,7 +37,7 @@ export type TodoProps = {
 export type ToDoFormProps = {
     isEdit: boolean
     todo?: Todo
-    onSubmitSave?: SubmitHandler<Todo> 
+    onSubmitSave?: SubmitHandler<Todo>
     onSubmitEdit?: SubmitHandler<Todo>
     onSubmitDelete?: () => void
 }
@@ -55,3 +55,16 @@ export type SnackbarObject = {
 }
 
 export type SnackbarTypes = 'error' | 'success' | 'info'
+
+export type ActiveSelectProps = {
+    value: ItemStatus
+    onChange: (e) => void
+}
+
+export type TodoListItemProps = {
+    item: FieldArrayWithId<Todo, 'items', 'id'>
+    index: number
+    itemStatus: ItemStatus
+    remove: (index: number) => void
+    append: (todo: FieldArrayWithId<Todo, 'items', 'id'>) => void
+}

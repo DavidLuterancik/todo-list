@@ -8,7 +8,7 @@ export const toDoListsApi = createApi({
     endpoints: (builder) => ({
         getTodos: builder.query<Todo[], TodoQuery>({
             query: (params) => {
-                return `/todos?${buildQuery(params)}`
+                return `/todos?${buildQueryMockApi(params)}`
             },
             providesTags: ['todos'],
         }),
@@ -48,15 +48,25 @@ export const toDoListsApi = createApi({
     }),
 })
 
-function buildQuery({ q, sorter }: TodoQuery) {
+// function buildQueryLocal({ q, sorter }: TodoQuery) {
+//     const searchParams = new URLSearchParams()
+//     if (q) {
+//         searchParams.append('q', q)
+//     }
+//     searchParams.append('_sort', 'date')
+//     searchParams.append('_order', sorter === Sorter.Newest ? 'desc' : 'asc')
+//     return searchParams.toString()
+// }
+
+function buildQueryMockApi({ q, sorter }: TodoQuery) {
     const searchParams = new URLSearchParams()
 
     if (q) {
-        searchParams.append('q', q)
+        searchParams.append('search', q)
     }
 
-    searchParams.append('_sort', 'date')
-    searchParams.append('_order', sorter === Sorter.Newest ? 'desc' : 'asc')
+    searchParams.append('sortBy', 'date')
+    searchParams.append('order', sorter === Sorter.Newest ? 'desc' : 'asc')
 
     return searchParams.toString()
 }
