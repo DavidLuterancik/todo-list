@@ -20,7 +20,8 @@ export type Todo = {
     id: string
     title: string
     items: TodoItem[]
-    date: string
+    date: string,
+    locked?: boolean
 }
 
 export type TodoItem = {

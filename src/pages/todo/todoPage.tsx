@@ -5,7 +5,7 @@ import {
     useGetTodoQuery,
     usePutTodoMutation,
 } from '../../store/services/toDoLists'
-import { Container, Typography } from '@mui/material'
+import { Typography } from '@mui/material'
 import { Todo } from '../../types/types'
 
 import { SubmitHandler } from 'react-hook-form'
@@ -34,7 +34,7 @@ function ToDoPage() {
                     setShowSnackbar({
                         show: true,
                         type: 'success',
-                        text: `Edited ToDo: ${todo?.title}`,
+                        text: `Edited Todo: ${todo?.title}`,
                     })
                 )
                 navigate('/')
@@ -51,7 +51,7 @@ function ToDoPage() {
 
     function onSubmitDelete() {
         if (
-            todoId &&
+            todoId && 
             window.confirm(
                 `Do you really want to delete this Todo: ${todo?.title}`
             )
@@ -63,7 +63,7 @@ function ToDoPage() {
                         setShowSnackbar({
                             show: true,
                             type: 'info',
-                            text: `Deleted ToDo: ${todo?.title}`,
+                            text: `Deleted Todo: ${todo?.title}`,
                         })
                     )
                 })
@@ -88,7 +88,7 @@ function ToDoPage() {
             <>
                 <BackButton to='/' />
                 <Typography variant="h5" color="textSecondary">
-                    ToDo list not found 😔
+                    Todo list not found 😔
                 </Typography>
             </>
         )

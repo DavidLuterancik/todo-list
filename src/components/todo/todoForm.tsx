@@ -7,11 +7,12 @@ import {
     Paper,
     Stack,
     TextField,
+    Tooltip,
     Typography,
 } from '@mui/material'
 import { ItemStatus, ToDoFormProps, Todo, TodoItem } from '../../types/types'
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers'
-import { Add, Delete, Save } from '@mui/icons-material'
+import { Add, Delete, Lock, Save } from '@mui/icons-material'
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment'
 import moment from 'moment'
 import { TodoSchema } from '../../schemas/itemSchema'
@@ -79,7 +80,7 @@ const ToDoForm = ({
 
     unstable_usePrompt({
         message: 'You have unsaved changes, do you want to leave?',
-        when: isDirty && !isSubmitted,
+        when: isDirty && !isSubmitted && !todo?.locked,
     })
 
     const ref: React.RefObject<HTMLDivElement> = useRef(null)
@@ -121,6 +122,7 @@ const ToDoForm = ({
                                 endIcon={<Add />}
                                 fullWidth
                                 size="large"
+                                disabled={todo?.locked}
                             >
                                 Add Item
                             </Button>
@@ -138,21 +140,36 @@ const ToDoForm = ({
         return (
             <Stack
                 direction="row"
-                spacing={2}
-                sx={{
-                    mb: 2,
-                }}
+                justifyContent={'space-between'}
+                alignItems={'baseline'}
             >
-                <BackButton to="/" />
+                <Stack
+                    direction="row"
+                    spacing={2}
+                    sx={{
+                        mb: 2,
+                    }}
+                >
+                    <BackButton to="/" />
 
-                <Divider orientation="vertical" flexItem />
+                    <Divider orientation="vertical" flexItem />
 
-                <ActiveSelect
-                    value={itemStatus}
-                    onChange={(e) =>
-                        setItemStatus(e.target.value as ItemStatus)
-                    }
-                />
+                    <ActiveSelect
+                        value={itemStatus}
+                        onChange={(e) =>
+                            setItemStatus(e.target.value as ItemStatus)
+                        }
+                    />
+                </Stack>
+
+                {todo?.locked && (
+                    <Tooltip
+                        placement={'top'}
+                        title="This Todo cannot be edited"
+                    >
+                        <Lock color="disabled" />
+                    </Tooltip>
+                )}
             </Stack>
         )
     }
@@ -160,7 +177,7 @@ const ToDoForm = ({
     function renderTodoInfo() {
         return (
             <Stack direction={'column'} spacing={2}>
-                <Typography variant="h6">{`ToDo`}</Typography>
+                <Typography variant="h6">{`Todo`}</Typography>
                 <Controller
                     name={'title'}
                     control={control}
@@ -285,6 +302,7 @@ const ToDoForm = ({
                             endIcon={<Edit />}
                             onClick={onSubmitEdit && handleSubmit(onSubmitEdit)}
                             fullWidth
+                            disabled={todo?.locked}
                         >
                             {'Edit'}
                         </Button>
@@ -293,6 +311,7 @@ const ToDoForm = ({
                             size="large"
                             color={'error'}
                             endIcon={<Delete />}
+                            disabled={todo?.locked}
                             onClick={onSubmitDelete && onSubmitDelete}
                             fullWidth
                         >
@@ -307,6 +326,7 @@ const ToDoForm = ({
                         onClick={onSubmitSave && handleSubmit(onSubmitSave)}
                         type="submit"
                         fullWidth
+                        disabled={todo?.locked}
                     >
                         {'Save'}
                     </Button>
