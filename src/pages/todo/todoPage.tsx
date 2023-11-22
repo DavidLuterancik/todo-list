@@ -80,21 +80,17 @@ function ToDoPage() {
     }
 
     if (isFetching) {
-        return (
-            <Container maxWidth="md">
-                <ToDoSkeleton />
-            </Container>
-        )
+        return <ToDoSkeleton /> 
     }
 
     if (error) {
         return (
-            <Container maxWidth="md">
+            <>
                 <BackButton />
                 <Typography variant="h5" color="textSecondary">
                     ToDo list not found 😔
                 </Typography>
-            </Container>
+            </>
         )
     }
 

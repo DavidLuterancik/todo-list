@@ -15,7 +15,12 @@ import { Add, Delete, Save } from '@mui/icons-material'
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment'
 import moment from 'moment'
 import { TodoSchema } from '../../schemas/itemSchema'
-import { Controller, FormProvider, useFieldArray, useForm } from 'react-hook-form'
+import {
+    Controller,
+    FormProvider,
+    useFieldArray,
+    useForm,
+} from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import Empty from '../../components/empty/empty'
 import { Edit } from '@mui/icons-material'
@@ -26,6 +31,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 import ActiveSelect from '../activeSelect/activeSelect'
 import TodoListItem from './todoListItem'
 import BackButton from '../backButton/backButton'
+import { MAX_TITLE_LENGHT, getMaxLenght } from '../../utils'
 
 const DATE_FORMAT = import.meta.env.VITE_DATE_FORMAT
 
@@ -47,13 +53,13 @@ function getDefaultData(todo: Todo | undefined) {
     }
 }
 
-export default function ToDoForm({
+const ToDoForm = ({
     isEdit,
     todo,
     onSubmitEdit,
     onSubmitSave,
     onSubmitDelete,
-}: ToDoFormProps) {
+}: ToDoFormProps) => {
     const [itemStatus, setItemStatus] = useState<ItemStatus>(ItemStatus.All)
 
     const methods = useForm<Todo>({
@@ -61,19 +67,23 @@ export default function ToDoForm({
         resolver: zodResolver(TodoSchema),
         mode: 'all',
     })
-    const { control, handleSubmit } = methods
+    const {
+        control,
+        handleSubmit,
+        formState: { isDirty, isSubmitted },
+    } = methods
     const { fields, append, remove, move } = useFieldArray({
         control,
         name: 'items',
     })
 
-    // unstable_usePrompt({
-    //     message: 'You have unsaved changes, do you want to leave?',
-    //     when: isDirty && !isSubmitted,
-    // })
+    unstable_usePrompt({
+        message: 'You have unsaved changes, do you want to leave?',
+        when: isDirty && !isSubmitted,
+    })
 
     return (
-        <Container maxWidth="lg">
+        <Container maxWidth="lg" disableGutters>
             <LocalizationProvider
                 dateAdapter={AdapterMoment}
                 adapterLocale="sk-SK"
@@ -149,7 +159,14 @@ export default function ToDoForm({
                         <TextField
                             key={'title'}
                             label={'Title'}
-                            helperText={error && error.message}
+                            helperText={
+                                error
+                                    ? error.message
+                                    : getMaxLenght(
+                                          value.length,
+                                          MAX_TITLE_LENGHT
+                                      )
+                            }
                             error={!!error}
                             onChange={onChange}
                             value={value}
@@ -171,12 +188,10 @@ export default function ToDoForm({
                             label="Date"
                             value={value && moment(value)}
                             onChange={onChange}
-                            fullWidth
                             format={DATE_FORMAT}
                             slotProps={{
                                 textField: {
                                     required: true,
-                                    clearable: true,
                                     onBlur,
                                     name,
                                     error: !!fieldState?.error,
@@ -257,14 +272,17 @@ export default function ToDoForm({
                             size="large"
                             endIcon={<Edit />}
                             onClick={onSubmitEdit && handleSubmit(onSubmitEdit)}
+                            fullWidth
                         >
                             {'Edit'}
                         </Button>
                         <Button
                             variant="outlined"
                             size="large"
+                            color={'error'}
                             endIcon={<Delete />}
                             onClick={onSubmitDelete && onSubmitDelete}
+                            fullWidth
                         >
                             {'Delete'}
                         </Button>
@@ -276,6 +294,7 @@ export default function ToDoForm({
                         endIcon={<Save />}
                         onClick={onSubmitSave && handleSubmit(onSubmitSave)}
                         type="submit"
+                        fullWidth
                     >
                         {'Save'}
                     </Button>
@@ -284,3 +303,5 @@ export default function ToDoForm({
         )
     }
 }
+
+export default ToDoForm

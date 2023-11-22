@@ -5,14 +5,22 @@ import {
     Checkbox,
     IconButton,
     ListItem,
-    ListItemIcon,
+    Stack,
     TextField,
+    Tooltip,
 } from '@mui/material'
 import { DatePicker } from '@mui/x-date-pickers'
 import moment from 'moment'
 import { DeleteOutline } from '@mui/icons-material'
 import { ContentCopyOutlined } from '@mui/icons-material'
 import { DragIndicator } from '@mui/icons-material'
+import { grey } from '@mui/material/colors'
+import {
+    MAX_NAME_LENGHT,
+    getDeadlineColor,
+    getMaxLenght,
+    isAfterDeadline,
+} from '../../utils'
 
 function shouldRenderItem(checked, itemStatus) {
     if (!checked && itemStatus === ItemStatus.Active) {
@@ -35,21 +43,30 @@ export default function TodoListItem({
 }: TodoListItemProps) {
     const { watch, control } = useFormContext()
 
+    const watchedChecked = watch(`items.${index}.checked`)
+    const watchedDeadline = watch(`items.${index}.deadline`)
+
     return (
         <ListItem
-            dense
+            disableGutters
             key={`${index}${item.id}`}
-            alignItems="flex-start"
             sx={{
-                display: !shouldRenderItem(
-                    watch(`items.${index}.checked`, null),
-                    itemStatus
-                )
+                display: !shouldRenderItem(watchedChecked, itemStatus)
                     ? 'none'
                     : 'flex',
+                backgroundColor: index % 2 ? grey[50] : 'white',
+                borderRadius: 2,
+                pt: 2,
             }}
         >
-            <ListItemIcon>
+            <Stack
+                direction={{ xs: 'column', sm: 'row' }}
+                justifyContent={'space-between'}
+                spacing={{ xs: 4, sm: 0 }}
+                sx={{
+                    pr: { xs: 0, sm: 2 },
+                }}
+            >
                 <IconButton disabled>
                     <DragIndicator />
                 </IconButton>
@@ -66,72 +83,111 @@ export default function TodoListItem({
                         />
                     )}
                 />
-            </ListItemIcon>
+            </Stack>
 
-            <Controller
-                name={`items.${index}.name`}
-                control={control}
-                render={({
-                    field: { onChange, value },
-                    fieldState: { error },
-                }) => (
-                    <TextField
-                        required
-                        key={`${item.id}.name`}
-                        label={'Name'}
-                        helperText={error && error.message}
-                        error={!!error}
-                        onChange={onChange}
-                        value={value}
-                        sx={{
-                            width: '50%',
-                            mr: 1,
-                        }}
-                    />
-                )}
-            />
+            <Stack
+                spacing={1}
+                direction={{ xs: 'column', sm: 'row' }}
+                flexGrow={1}
+            >
+                <Controller
+                    name={`items.${index}.name`}
+                    control={control}
+                    render={({
+                        field: { onChange, value },
+                        fieldState: { error },
+                    }) => (
+                        <TextField
+                            required
+                            key={`${item.id}.name`}
+                            label={'Name'}
+                            helperText={
+                                error
+                                    ? error.message
+                                    : getMaxLenght(
+                                          value.length,
+                                          MAX_NAME_LENGHT
+                                      )
+                            }
+                            error={!!error}
+                            onChange={onChange}
+                            value={value}
+                            multiline
+                            minRows={1}
+                            maxRows={4}
+                            sx={{
+                                width: '100%',
+                                input: {
+                                    textDecoration: watchedChecked
+                                        ? 'line-through'
+                                        : 'none',
+                                },
+                            }}
+                        />
+                    )}
+                />
 
-            <Controller
-                name={`items.${index}.deadline`}
-                control={control}
-                render={({
-                    field: { onChange, onBlur, name, value },
-                    fieldState,
-                }) => (
-                    <DatePicker
-                        key={`${item.id}.deadline`}
-                        label="Deadline"
-                        value={value && moment(value)}
-                        onChange={onChange}
-                        sx={{
-                            width: '50%',
-                        }}
-                        slotProps={{
-                            textField: {
-                                clearable: true,
-                                onBlur,
-                                name,
-                                error: !!fieldState?.error,
-                                helperText: fieldState?.error?.message,
-                            },
-                        }}
-                    />
-                )}
-            />
-            <ListItemIcon
+                <Controller
+                    name={`items.${index}.deadline`}
+                    control={control}
+                    render={({
+                        field: { onChange, onBlur, name, value },
+                        fieldState,
+                    }) => (
+                        <DatePicker
+                            key={`${item.id}.deadline`}
+                            label="Deadline"
+                            value={value && moment(value)}
+                            onChange={onChange}
+                            sx={{
+                                label: {
+                                    color: getDeadlineColor(
+                                        watchedChecked,
+                                        watchedDeadline
+                                    ),
+                                    fontWeight: isAfterDeadline(
+                                        watchedChecked,
+                                        watchedDeadline
+                                    )
+                                        ? 'bold'
+                                        : 'normal',
+                                },
+
+                                width: '100%',
+                            }}
+                            slotProps={{
+                                textField: {
+                                    onBlur,
+                                    name,
+                                    error: !!fieldState?.error,
+                                    helperText: fieldState?.error?.message,
+                                },
+                            }}
+                        />
+                    )}
+                />
+            </Stack>
+
+            <Stack
+                direction={{ xs: 'column', sm: 'row' }}
+                justifyContent={'space-between'}
+                spacing={{ xs: 4, sm: 0 }}
                 sx={{
-                    justifyContent: 'flex-end',
-                    ml: 1,
+                    pl: { xs: 0, sm: 2 },
                 }}
             >
-                <IconButton onClick={() => append(item)}>
-                    <ContentCopyOutlined />
-                </IconButton>
+                <Tooltip title="Duplicate">
+                    <IconButton onClick={() => append(item)}>
+                        <ContentCopyOutlined />
+                    </IconButton>
+                </Tooltip>
 
-                <IconButton onClick={() => remove(index)}>
-                    <DeleteOutline />
-                </IconButton>
-            </ListItemIcon>
+                <Tooltip title="Remove">
+                    <IconButton onClick={() => remove(index)}>
+                        <DeleteOutline />
+                    </IconButton>
+                </Tooltip>
+            </Stack>
         </ListItem>
     )
 }

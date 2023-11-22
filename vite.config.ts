@@ -7,5 +7,5 @@ export default defineConfig({
     optimizeDeps: {
         include: ['@emotion/styled'],
     },
-    base: '/todo-list',
+    // base: '/todo-list',
 })

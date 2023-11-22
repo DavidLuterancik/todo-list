@@ -13,17 +13,9 @@ import moment from 'moment'
 import { Link } from 'react-router-dom'
 import { CalendarIcon } from '@mui/x-date-pickers'
 import { blue } from '@mui/material/colors'
+import { getDeadlineColor, isAfterDeadline } from '../../utils'
 
 const DATE_FORMAT = import.meta.env.VITE_DATE_FORMAT
-
-function getDeadlineColor({ checked, deadline }: TodoItem) {
-    const isPast = moment(deadline).diff(moment()) < 0
-
-    if (!checked && isPast) {
-        return 'error'
-    }
-    return 'textSecondary'
-}
 
 export default function ToDo({ todo }: TodoProps) {
     return (
@@ -64,7 +56,7 @@ export default function ToDo({ todo }: TodoProps) {
                                                 : 'textPrimary'
                                         }
                                         sx={{
-                                            fontWeight: 'bold',
+                                            fontWeight: 450,
                                             textDecoration: item.checked
                                                 ? 'line-through'
                                                 : 'none',
@@ -78,11 +70,20 @@ export default function ToDo({ todo }: TodoProps) {
                                     item.deadline && (
                                         <Typography
                                             variant="body2"
-                                            color={getDeadlineColor(item)}
+                                            color={getDeadlineColor(
+                                                item.checked,
+                                                item.deadline
+                                            )}
                                             sx={{
                                                 textDecoration: item.checked
                                                     ? 'line-through'
                                                     : 'none',
+                                                fontWeight: isAfterDeadline(
+                                                    item.checked,
+                                                    item.deadline
+                                                )
+                                                    ? 'bold'
+                                                    : 'normal',
                                             }}
                                         >
                                             {moment(item.deadline).format(

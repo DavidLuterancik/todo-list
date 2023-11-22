@@ -23,6 +23,11 @@ function Layout() {
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
                     paddingY: 4,
+                    fontSize: {
+                        md: 96,
+                        sm: 80,
+                        xs: 64
+                      }
                 }}
             >
                 {'TODO-IST'}

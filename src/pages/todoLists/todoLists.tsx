@@ -23,62 +23,78 @@ function ToDoLists() {
     return (
         <>
             <Stack
-                direction="row"
+                direction={{ xs: 'column', sm: 'row' }}
                 spacing={2}
                 sx={{
                     mb: 4,
                 }}
             >
-                <TextField
-                    id="search"
-                    label="Search"
-                    value={search}
-                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                        setSearch(event.target.value)
-                    }}
-                    fullWidth
-                    sx={{
-                        background: 'white',
-                    }}
-                    InputProps={{
-                        endAdornment: search !== '' && (
-                            <IconButton
-                                onClick={() => {
-                                    setSearch('')
-                                }}
-                            >
-                                <Close />
-                            </IconButton>
-                        ),
-                    }}
-                />
-
-                <FormControl fullWidth>
-                    <InputLabel id="sorter-select-label">Sorter</InputLabel>
-                    <Select
-                        labelId="sorter-select-label"
-                        id="sorter-select"
-                        value={sorter}
-                        label="Sorter"
-                        onChange={(e) => setSorter(e.target.value as Sorter)}
+                <Stack
+                    spacing={2}
+                    direction={{ xs: 'column', sm: 'row' }}
+                    flex={1}
+                >
+                    <TextField
+                        id="search"
+                        label="Search"
+                        value={search}
+                        onChange={(
+                            event: React.ChangeEvent<HTMLInputElement>
+                        ) => {
+                            setSearch(event.target.value)
+                        }}
                         sx={{
                             background: 'white',
                         }}
-                    >
-                        {Object.values(Sorter).map((sorter) => (
-                            <MenuItem key={sorter} value={sorter}>
-                                {sorter}
-                            </MenuItem>
-                        ))}
-                    </Select>
-                </FormControl>
+                        fullWidth
+                        InputProps={{
+                            endAdornment: search !== '' && (
+                                <IconButton
+                                    onClick={() => {
+                                        setSearch('')
+                                    }}
+                                >
+                                    <Close />
+                                </IconButton>
+                            ),
+                        }}
+                    />
 
-                <Divider orientation="vertical" flexItem />
+                    <FormControl fullWidth>
+                        <InputLabel id="sorter-select-label">Sorter</InputLabel>
+                        <Select
+                            labelId="sorter-select-label"
+                            id="sorter-select"
+                            value={sorter}
+                            label="Sorter"
+                            onChange={(e) =>
+                                setSorter(e.target.value as Sorter)
+                            }
+                            sx={{
+                                background: 'white',
+                            }}
+                        >
+                            {Object.values(Sorter).map((sorter) => (
+                                <MenuItem key={sorter} value={sorter}>
+                                    {sorter}
+                                </MenuItem>
+                            ))}
+                        </Select>
+                    </FormControl>
+                </Stack>
+
+                <Divider
+                    orientation="vertical"
+                    flexItem
+                    sx={{ display: { xs: 'none', md: 'block' } }}
+                />
 
                 <Button
                     variant="contained"
                     sx={{
-                        width: 256,
+                        xs: {
+                            minWidth: 256,
+                        },
                     }}
                     endIcon={<Add />}
                     to={`/todo/new`}
