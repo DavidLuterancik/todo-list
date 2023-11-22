@@ -50,8 +50,8 @@ export default function Nav() {
     const handleOpen = () => setOpen(true)
     const handleClose = () => setOpen(false)
 
-    const [lang, setLang] = useState('EN')
-    const [darkMode, setDarkMode] = useState(false)
+    const [lang] = useState('EN')
+    const [darkMode] = useState(false)
 
     return (
         <>
@@ -110,14 +110,16 @@ export default function Nav() {
                         label={menuItem.label}
                         component={Link}
                         icon={menuItem.icon}
-                        iconPosition='start'
+                        iconPosition="start"
                     />
                 ))}
                 <Tab
                     key={'settings'}
                     value={'settings'}
                     onClick={handleOpen}
+                    label="Settings"
                     icon={<Settings />}
+                    iconPosition="start"
                 />
             </Tabs>
         </>

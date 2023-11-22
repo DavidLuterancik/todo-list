@@ -6,7 +6,9 @@ import { setShowSnackbar } from '../../store/features/appSlice'
 
 export default function SnackbarComponent() {
     const dispatch = useDispatch()
-    const { show, type, text } = useAppSelector((state) => state.appState.snackbar)
+    const { show, type, text } = useAppSelector(
+        (state) => state.appState.snackbar
+    )
 
     function getAlert() {
         if (type === 'error') {
@@ -41,6 +43,7 @@ export default function SnackbarComponent() {
             open={show}
             autoHideDuration={2000}
             onClose={handleClose}
+            anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
         >
             <div>{getAlert()}</div>
         </Snackbar>
