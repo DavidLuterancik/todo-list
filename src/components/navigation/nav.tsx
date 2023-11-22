@@ -1,8 +1,12 @@
-import { DarkMode, LightMode } from '@mui/icons-material'
+import {
+    Checklist,
+    DarkMode,
+    Info,
+    LightMode,
+    Settings,
+} from '@mui/icons-material'
 import {
     Box,
-    Button,
-    ButtonGroup,
     Modal,
     Stack,
     Tab,
@@ -15,8 +19,16 @@ import React, { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
 const MENU_ITEMS = [
-    { path: '/', label: 'Todo Lists' },
-    { path: '/about', label: 'About' },
+    {
+        path: '/',
+        label: 'Todo lists',
+        icon: <Checklist />,
+    },
+    {
+        path: '/about',
+        label: 'About',
+        icon: <Info />,
+    },
 ]
 
 const style = {
@@ -97,13 +109,15 @@ export default function Nav() {
                         to={menuItem.path}
                         label={menuItem.label}
                         component={Link}
+                        icon={menuItem.icon}
+                        iconPosition='start'
                     />
                 ))}
                 <Tab
                     key={'settings'}
                     value={'settings'}
-                    label={'Settings'}
                     onClick={handleOpen}
+                    icon={<Settings />}
                 />
             </Tabs>
         </>
