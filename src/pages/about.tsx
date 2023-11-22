@@ -47,20 +47,23 @@ export default function About() {
             >
                 <Grid item xs>
                     <List dense disablePadding>
-                        <ListItem>
+                        <ListItem disablePadding>
                             <ListItemText
+                                sx={{ mr: 4 }}
                                 primary="Create and Manage"
-                                secondary="Multiple ToDo lists to keep track of tasks."
+                                secondary="Multiple ToDo lists to keep track of the tasks."
                             />
                         </ListItem>
-                        <ListItem>
+                        <ListItem disablePadding>
                             <ListItemText
+                                sx={{ mr: 4 }}
                                 primary="Keep track"
                                 secondary="Each ToDo list has a title, date, and a set of items with name, deadline and completion."
                             />
                         </ListItem>
-                        <ListItem>
+                        <ListItem disablePadding>
                             <ListItemText
+                                sx={{ mr: 4 }}
                                 primary="Persist"
                                 secondary="Store your data on external API to keep track wherever you are."
                             />

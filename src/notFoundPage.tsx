@@ -5,7 +5,7 @@ import BackButton from './components/backButton/backButton'
 function NotFoundPage() {
     return (
         <Container maxWidth="md">
-            <BackButton />
+            <BackButton to='/' />
             <Typography variant="h1" color="textSecondary">
                 404
             </Typography>

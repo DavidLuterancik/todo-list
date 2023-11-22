@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import {
     Button,
     Container,
@@ -9,7 +9,7 @@ import {
     TextField,
     Typography,
 } from '@mui/material'
-import { ItemStatus, ToDoFormProps, Todo } from '../../types/types'
+import { ItemStatus, ToDoFormProps, Todo, TodoItem } from '../../types/types'
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers'
 import { Add, Delete, Save } from '@mui/icons-material'
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment'
@@ -82,6 +82,16 @@ const ToDoForm = ({
         when: isDirty && !isSubmitted,
     })
 
+    const ref: React.RefObject<HTMLDivElement> = useRef(null)
+
+    const executeScroll = () =>
+        ref?.current?.scrollIntoView({ behavior: 'smooth' })
+
+    const appendAndScroll = (item: TodoItem) => {
+        append(item)
+        executeScroll()
+    }
+
     return (
         <Container maxWidth="lg" disableGutters>
             <LocalizationProvider
@@ -100,6 +110,7 @@ const ToDoForm = ({
                             {renderHeader()}
                             {renderTodoInfo()}
                             {renderDraggableList()}
+                            <div ref={ref} />
 
                             <Button
                                 variant="outlined"
@@ -109,6 +120,7 @@ const ToDoForm = ({
                                 }}
                                 endIcon={<Add />}
                                 fullWidth
+                                size="large"
                             >
                                 Add Item
                             </Button>
@@ -131,7 +143,7 @@ const ToDoForm = ({
                     mb: 2,
                 }}
             >
-                <BackButton />
+                <BackButton to="/" />
 
                 <Divider orientation="vertical" flexItem />
 
@@ -246,7 +258,7 @@ const ToDoForm = ({
                                                         index={index}
                                                         itemStatus={itemStatus}
                                                         remove={remove}
-                                                        append={append}
+                                                        append={appendAndScroll}
                                                     />
                                                 </div>
                                             )}

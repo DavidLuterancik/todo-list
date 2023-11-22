@@ -1,51 +1,71 @@
 [
     {
-      "title": "Demo tasks",
-      "items": [
-        {
-          "name": "Task",
-          "checked": false,
-          "deadline": null
-        },
-        {
-          "name": "Task deadline",
-          "checked": false,
-          "deadline": "2027-11-12T23:00:00.000Z"
-        },
-        {
-          "name": "Task dedadline after",
-          "checked": false,
-          "deadline": "2023-11-18T23:00:00.000Z"
-        },
-        {
-          "name": "Task complete",
-          "checked": true,
-          "deadline": null
-        },
-        {
-          "name": "Task complete deadline",
-          "checked": true,
-          "deadline": "2023-11-24T23:00:00.000Z"
-        },
-        {
-          "name": "Task complete deadline after",
-          "checked": true,
-          "deadline": "2023-11-10T23:00:00.000Z"
-        }
-      ],
-      "id": "1",
-      "date": "2023-11-22T13:41:24.254Z"
+        "title": "Demo tasks",
+        "items": [
+            { "checked": false, "name": "Task", "deadline": null },
+            {
+                "checked": false,
+                "name": "Task deadline",
+                "deadline": "2027-11-12T23:00:00.000Z"
+            },
+            {
+                "checked": false,
+                "name": "Task dedadline after",
+                "deadline": "2023-11-18T23:00:00.000Z"
+            },
+            { "checked": true, "name": "Task complete", "deadline": null },
+            {
+                "checked": true,
+                "name": "Task complete deadline",
+                "deadline": "2023-11-24T23:00:00.000Z"
+            },
+            {
+                "checked": true,
+                "name": "Task complete deadline after",
+                "deadline": "2023-11-10T23:00:00.000Z"
+            }
+        ],
+        "id": "1",
+        "date": "2023-11-22T13:41:24.254Z"
     },
     {
-      "title": "Additional features",
-      "date": "2023-11-22T13:41:53.861Z",
-      "items": [
-        {
-          "name": "When changes are made, dont let user leave the page",
-          "checked": false,
-          "deadline": null
-        }
-      ],
-      "id": "2"
+        "title": "Features / Fix",
+        "date": "2023-11-02T13:41:53.000Z",
+        "items": [
+            {
+                "checked": true,
+                "name": "Max characters per name and title",
+                "deadline": null
+            },
+            {
+                "checked": true,
+                "name": "When changes are made, dont let user leave the page",
+                "deadline": null
+            },
+            {
+                "checked": false,
+                "name": "Fix about page size",
+                "deadline": null
+            },
+            {
+                "checked": false,
+                "name": "Change button sizes to large",
+                "deadline": null
+            },
+            {
+                "checked": false,
+                "name": "Text strike trough on checked items in form",
+                "deadline": null
+            },
+            {
+                "checked": false,
+                "name": "Scroll to the bottom of list on copy",
+                "deadline": null
+            },
+            { "checked": false, "name": "Add locked ToDo", "deadline": null },
+            { "checked": false, "name": "Dark theme", "deadline": null },
+            { "checked": false, "name": "Language switch", "deadline": null }
+        ],
+        "id": "2"
     }
-  ]
+]

@@ -86,7 +86,7 @@ function ToDoPage() {
     if (error) {
         return (
             <>
-                <BackButton />
+                <BackButton to='/' />
                 <Typography variant="h5" color="textSecondary">
                     ToDo list not found 😔
                 </Typography>

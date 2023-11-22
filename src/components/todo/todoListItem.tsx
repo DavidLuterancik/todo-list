@@ -117,7 +117,7 @@ export default function TodoListItem({
                             maxRows={4}
                             sx={{
                                 width: '100%',
-                                input: {
+                                label: {
                                     textDecoration: watchedChecked
                                         ? 'line-through'
                                         : 'none',
