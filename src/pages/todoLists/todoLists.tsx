@@ -43,9 +43,6 @@ function ToDoLists() {
                         ) => {
                             setSearch(event.target.value)
                         }}
-                        sx={{
-                            background: 'white',
-                        }}
                         fullWidth
                         InputProps={{
                             endAdornment: search !== '' && (
@@ -70,9 +67,6 @@ function ToDoLists() {
                             onChange={(e) =>
                                 setSorter(e.target.value as Sorter)
                             }
-                            sx={{
-                                background: 'white',
-                            }}
                         >
                             {Object.values(Sorter).map((sorter) => (
                                 <MenuItem key={sorter} value={sorter}>

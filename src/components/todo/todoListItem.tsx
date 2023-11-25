@@ -54,7 +54,7 @@ export default function TodoListItem({
                 display: !shouldRenderItem(watchedChecked, itemStatus)
                     ? 'none'
                     : 'flex',
-                backgroundColor: index % 2 ? grey[50] : 'white',
+                // backgroundColor: index % 2 ? grey[50] : 'white',
                 borderRadius: 2,
                 pt: 2,
             }}

@@ -1,16 +1,14 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
-import {
-    SnackbarObject,
-    Sorter,
-    TodoQuery,
-} from '../../types/types'
+import { SnackbarObject, Sorter, TodoQuery } from '../../types/types'
 
 interface appState {
+    isDarkMode: boolean
     snackbar: SnackbarObject
     filters: TodoQuery
 }
 
 const initialState: appState = {
+    isDarkMode: false,
     snackbar: {
         show: false,
     },
@@ -33,8 +31,11 @@ export const AppSlice = createSlice({
         ) => {
             state.snackbar = action.payload
         },
+        setDarkMode: (state: appState, action: PayloadAction<boolean>) => {
+            state.isDarkMode = action.payload
+        },
     },
 })
 
 export default AppSlice.reducer
-export const { setFilters, setShowSnackbar } = AppSlice.actions
+export const { setFilters, setShowSnackbar, setDarkMode } = AppSlice.actions

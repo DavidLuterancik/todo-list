@@ -16,7 +16,10 @@ import {
     Typography,
 } from '@mui/material'
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { Link, useLocation } from 'react-router-dom'
+import { setDarkMode } from '../../store/features/appSlice'
+import { useAppSelector } from '../../store'
 
 const MENU_ITEMS = [
     {
@@ -51,7 +54,16 @@ export default function Nav() {
     const handleClose = () => setOpen(false)
 
     const [lang] = useState('EN')
-    const [darkMode] = useState(false)
+
+    const isDarkMode = useAppSelector((state) => state.appState.isDarkMode)
+    const dispatch = useDispatch()
+
+    function handleDarkModeChange(
+        event: React.MouseEvent<HTMLElement>,
+        bool: boolean
+    ) {
+        dispatch(setDarkMode(bool))
+    }
 
     return (
         <>
@@ -80,12 +92,17 @@ export default function Nav() {
                         </ToggleButtonGroup>
 
                         <Typography gutterBottom>Dark</Typography>
-                        <ToggleButtonGroup value={darkMode} exclusive fullWidth>
+                        <ToggleButtonGroup
+                            onChange={handleDarkModeChange}
+                            value={isDarkMode}
+                            exclusive
+                            fullWidth
+                        >
                             <ToggleButton value={false}>
                                 <LightMode />
                             </ToggleButton>
 
-                            <ToggleButton value={true} disabled>
+                            <ToggleButton value={true}>
                                 <DarkMode />
                             </ToggleButton>
                         </ToggleButtonGroup>

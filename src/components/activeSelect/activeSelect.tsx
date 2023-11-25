@@ -1,9 +1,8 @@
-import React from "react";
-import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
-import { ActiveSelectProps, ItemStatus } from "../../types/types";
+import React from 'react'
+import { FormControl, InputLabel, MenuItem, Select } from '@mui/material'
+import { ActiveSelectProps, ItemStatus } from '../../types/types'
 
-
-export default function ActiveSelect ({ value, onChange }: ActiveSelectProps) {
+export default function ActiveSelect({ value, onChange }: ActiveSelectProps) {
     return (
         <FormControl
             sx={{
@@ -16,9 +15,6 @@ export default function ActiveSelect ({ value, onChange }: ActiveSelectProps) {
                 id="item-select"
                 value={value}
                 onChange={onChange}
-                style={{
-                    background: 'white',
-                }}
             >
                 {Object.values(ItemStatus).map((status) => (
                     <MenuItem key={status} value={status}>
@@ -27,5 +23,5 @@ export default function ActiveSelect ({ value, onChange }: ActiveSelectProps) {
                 ))}
             </Select>
         </FormControl>
-    );
+    )
 }
