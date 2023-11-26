@@ -11,6 +11,7 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 
 const TECH = [
+    'I18N',
     'Material-UI',
     'Moment',
     'React',
