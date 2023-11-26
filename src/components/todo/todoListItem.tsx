@@ -8,19 +8,21 @@ import {
     Stack,
     TextField,
     Tooltip,
+    useTheme,
 } from '@mui/material'
 import { DatePicker } from '@mui/x-date-pickers'
 import moment from 'moment'
 import { DeleteOutline } from '@mui/icons-material'
 import { ContentCopyOutlined } from '@mui/icons-material'
 import { DragIndicator } from '@mui/icons-material'
-import { grey } from '@mui/material/colors'
 import {
     MAX_NAME_LENGHT,
     getDeadlineColor,
     getMaxLenght,
     isAfterDeadline,
 } from '../../utils'
+import { useTranslation } from 'react-i18next'
+import { grey } from '@mui/material/colors'
 
 function shouldRenderItem(checked, itemStatus) {
     if (!checked && itemStatus === ItemStatus.Active) {
@@ -41,24 +43,28 @@ export default function TodoListItem({
     remove,
     append,
 }: TodoListItemProps) {
+    const { t } = useTranslation()
+    const theme = useTheme()
+
     const { watch, control } = useFormContext()
 
     const watchedChecked = watch(`items.${index}.checked`)
     const watchedDeadline = watch(`items.${index}.deadline`)
 
+    const itemStyle = {
+        display: !shouldRenderItem(watchedChecked, itemStatus)
+            ? 'none'
+            : 'flex',
+        backgroundColor: index % 2 ? theme.palette.divider : 'transparent',
+        borderRadius: 2,
+        py: { xs: 4, sm: 1 },
+        my: { xs: 1, sm: 1 },
+        border: 1,
+        borderColor: theme.palette.divider,
+    }
+
     return (
-        <ListItem
-            disableGutters
-            key={`${index}${item.id}`}
-            sx={{
-                display: !shouldRenderItem(watchedChecked, itemStatus)
-                    ? 'none'
-                    : 'flex',
-                // backgroundColor: index % 2 ? grey[50] : 'white',
-                borderRadius: 2,
-                pt: 2,
-            }}
-        >
+        <ListItem disableGutters key={`${index}${item.id}`} sx={itemStyle}>
             <Stack
                 direction={{ xs: 'column', sm: 'row' }}
                 justifyContent={'space-between'}
@@ -100,7 +106,7 @@ export default function TodoListItem({
                         <TextField
                             required
                             key={`${item.id}.name`}
-                            label={'Name'}
+                            label={t('Name')}
                             helperText={
                                 error
                                     ? error.message
@@ -136,7 +142,7 @@ export default function TodoListItem({
                     }) => (
                         <DatePicker
                             key={`${item.id}.deadline`}
-                            label="Deadline"
+                            label={t('Deadline')}
                             value={value && moment(value)}
                             onChange={onChange}
                             sx={{
@@ -176,13 +182,13 @@ export default function TodoListItem({
                     pl: { xs: 0, sm: 2 },
                 }}
             >
-                <Tooltip title="Duplicate">
+                <Tooltip title={t('Duplicate')}>
                     <IconButton onClick={() => append(item)}>
                         <ContentCopyOutlined />
                     </IconButton>
                 </Tooltip>
 
-                <Tooltip title="Remove">
+                <Tooltip title={t('Remove')}>
                     <IconButton onClick={() => remove(index)}>
                         <DeleteOutline />
                     </IconButton>

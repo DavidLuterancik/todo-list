@@ -15,10 +15,13 @@ import {
 import { useToDoLists } from './todoLists.hooks.ts'
 import { Add, Close } from '@mui/icons-material'
 import ToDoGrid from '../../components/todoGrid/todoGrid.tsx'
+import { useTranslation } from 'react-i18next'
 
 function ToDoLists() {
     const { setSearch, search, setSorter, sorter, todos, error, isFetching } =
         useToDoLists()
+
+    const { t } = useTranslation()
 
     return (
         <>
@@ -36,7 +39,7 @@ function ToDoLists() {
                 >
                     <TextField
                         id="search"
-                        label="Search"
+                        label={t('Search')}
                         value={search}
                         onChange={(
                             event: React.ChangeEvent<HTMLInputElement>
@@ -58,19 +61,19 @@ function ToDoLists() {
                     />
 
                     <FormControl fullWidth>
-                        <InputLabel id="sorter-select-label">Sorter</InputLabel>
+                        <InputLabel id="sorter-select-label">{t('Sorter')}</InputLabel>
                         <Select
                             labelId="sorter-select-label"
                             id="sorter-select"
                             value={sorter}
-                            label="Sorter"
+                            label={t('Sorter')}
                             onChange={(e) =>
                                 setSorter(e.target.value as Sorter)
                             }
                         >
                             {Object.values(Sorter).map((sorter) => (
                                 <MenuItem key={sorter} value={sorter}>
-                                    {sorter}
+                                    {t(sorter)}
                                 </MenuItem>
                             ))}
                         </Select>
@@ -94,7 +97,7 @@ function ToDoLists() {
                     to={`/todo/new`}
                     component={Link}
                 >
-                    Create
+                    {t('Create')}
                 </Button>
             </Stack>
 

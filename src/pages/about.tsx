@@ -8,6 +8,7 @@ import {
     Typography,
 } from '@mui/material'
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 
 const TECH = [
     'Material-UI',
@@ -23,10 +24,12 @@ const TECH = [
 ]
 
 export default function About() {
+    const { t } = useTranslation()
+
     return (
         <Container maxWidth="sm" disableGutters>
             <Typography variant="h4" gutterBottom textAlign={'center'}>
-                Welcome! 🙋‍♂️
+                {`${t('Welcome')}! 🙋‍♂️`}
             </Typography>
             <Typography
                 variant="body1"
@@ -36,7 +39,7 @@ export default function About() {
                     marginBottom: 4,
                 }}
             >
-                This is a sample application for ToDo lists.
+                {t('app_text')}
             </Typography>
 
             <Grid
@@ -50,22 +53,22 @@ export default function About() {
                         <ListItem disablePadding>
                             <ListItemText
                                 sx={{ mr: 4 }}
-                                primary="Create and Manage"
-                                secondary="Multiple ToDo lists to keep track of the tasks."
+                                primary={t('create_and_manage')}
+                                secondary={t('create_and_manage_desc')}
                             />
                         </ListItem>
                         <ListItem disablePadding>
                             <ListItemText
                                 sx={{ mr: 4 }}
-                                primary="Keep track"
-                                secondary="Each ToDo list has a title, date, and a set of items with name, deadline and completion."
+                                primary={t('keep_track')}
+                                secondary={t('keep_track_desc')}
                             />
                         </ListItem>
                         <ListItem disablePadding>
                             <ListItemText
                                 sx={{ mr: 4 }}
-                                primary="Persist"
-                                secondary="Store your data on external API to keep track wherever you are."
+                                primary={t('persist')}
+                                secondary={t('persist_desc')}
                             />
                         </ListItem>
                     </List>
@@ -93,7 +96,7 @@ export default function About() {
                 textAlign={'center'}
                 color={'textSecondary'}
             >
-                Happy task management!
+                {t('task_managmenet')}
             </Typography>
         </Container>
     )

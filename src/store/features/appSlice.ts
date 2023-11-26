@@ -3,12 +3,14 @@ import { SnackbarObject, Sorter, TodoQuery } from '../../types/types'
 
 interface appState {
     isDarkMode: boolean
+    lang: string
     snackbar: SnackbarObject
     filters: TodoQuery
 }
 
 const initialState: appState = {
     isDarkMode: false,
+    lang: 'en',
     snackbar: {
         show: false,
     },
@@ -34,8 +36,11 @@ export const AppSlice = createSlice({
         setDarkMode: (state: appState, action: PayloadAction<boolean>) => {
             state.isDarkMode = action.payload
         },
+        setLang: (state: appState, action: PayloadAction<string>) => {
+            state.lang = action.payload
+        },
     },
 })
 
 export default AppSlice.reducer
-export const { setFilters, setShowSnackbar, setDarkMode } = AppSlice.actions
+export const { setFilters, setShowSnackbar, setDarkMode, setLang } = AppSlice.actions

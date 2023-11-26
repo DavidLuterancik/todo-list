@@ -14,19 +14,19 @@ export default function SnackbarComponent() {
         if (type === 'error') {
             return (
                 <Alert severity="error" variant="filled">
-                    {text || 'Oops, something went wrong!'}
+                    {text}
                 </Alert>
             )
         } else if (type === 'success') {
             return (
                 <Alert severity="success" variant="filled">
-                    {text || 'Success!'}
+                    {text}
                 </Alert>
             )
         } else if (type === 'info') {
             return (
                 <Alert severity="info" variant="filled">
-                    {text || 'Info!'}
+                    {text}
                 </Alert>
             )
         } else {

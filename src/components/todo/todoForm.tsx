@@ -33,6 +33,7 @@ import ActiveSelect from '../activeSelect/activeSelect'
 import TodoListItem from './todoListItem'
 import BackButton from '../backButton/backButton'
 import { MAX_TITLE_LENGHT, getMaxLenght } from '../../utils'
+import { useTranslation } from 'react-i18next'
 
 const DATE_FORMAT = import.meta.env.VITE_DATE_FORMAT
 
@@ -61,6 +62,8 @@ const ToDoForm = ({
     onSubmitSave,
     onSubmitDelete,
 }: ToDoFormProps) => {
+    const { t } = useTranslation()
+
     const [itemStatus, setItemStatus] = useState<ItemStatus>(ItemStatus.All)
 
     const methods = useForm<Todo>({
@@ -79,7 +82,7 @@ const ToDoForm = ({
     })
 
     unstable_usePrompt({
-        message: 'You have unsaved changes, do you want to leave?',
+        message: t('unsaved_changes'),
         when: isDirty && !isSubmitted && !todo?.locked,
     })
 
@@ -124,7 +127,7 @@ const ToDoForm = ({
                                 size="large"
                                 disabled={todo?.locked}
                             >
-                                Add Item
+                                {t('Add_Item')}
                             </Button>
                         </Paper>
 
@@ -163,10 +166,7 @@ const ToDoForm = ({
                 </Stack>
 
                 {todo?.locked && (
-                    <Tooltip
-                        placement={'top'}
-                        title="This Todo cannot be edited"
-                    >
+                    <Tooltip placement={'top'} title={t('cannot_edit')}>
                         <Lock color="disabled" />
                     </Tooltip>
                 )}
@@ -177,7 +177,7 @@ const ToDoForm = ({
     function renderTodoInfo() {
         return (
             <Stack direction={'column'} spacing={2}>
-                <Typography variant="h6">{`Todo`}</Typography>
+                <Typography variant="h6">{t(`Todo`)}</Typography>
                 <Controller
                     name={'title'}
                     control={control}
@@ -187,7 +187,7 @@ const ToDoForm = ({
                     }) => (
                         <TextField
                             key={'title'}
-                            label={'Title'}
+                            label={t('Title')}
                             helperText={
                                 error
                                     ? error.message
@@ -214,7 +214,7 @@ const ToDoForm = ({
                     }) => (
                         <DatePicker
                             key={`date`}
-                            label="Date"
+                            label={t('Date')}
                             value={value && moment(value)}
                             onChange={onChange}
                             format={DATE_FORMAT}
@@ -230,7 +230,7 @@ const ToDoForm = ({
                         />
                     )}
                 />
-                <Typography variant="h6">{'Items'}</Typography>
+                <Typography variant="h6">{t('Items')}</Typography>
             </Stack>
         )
     }
@@ -292,6 +292,8 @@ const ToDoForm = ({
     }
 
     function renderActions() {
+        const isLocked = todo?.locked
+
         return (
             <Stack direction={'row'} spacing={2}>
                 {isEdit ? (
@@ -302,20 +304,20 @@ const ToDoForm = ({
                             endIcon={<Edit />}
                             onClick={onSubmitEdit && handleSubmit(onSubmitEdit)}
                             fullWidth
-                            disabled={todo?.locked}
+                            disabled={isLocked}
                         >
-                            {'Edit'}
+                            {t('Edit')}
                         </Button>
                         <Button
                             variant="outlined"
                             size="large"
                             color={'error'}
                             endIcon={<Delete />}
-                            disabled={todo?.locked}
+                            disabled={isLocked}
                             onClick={onSubmitDelete && onSubmitDelete}
                             fullWidth
                         >
-                            {'Delete'}
+                            {t('Delete')}
                         </Button>
                     </>
                 ) : (
@@ -326,9 +328,9 @@ const ToDoForm = ({
                         onClick={onSubmitSave && handleSubmit(onSubmitSave)}
                         type="submit"
                         fullWidth
-                        disabled={todo?.locked}
+                        disabled={isLocked}
                     >
-                        {'Save'}
+                        {t('Save')}
                     </Button>
                 )}
             </Stack>

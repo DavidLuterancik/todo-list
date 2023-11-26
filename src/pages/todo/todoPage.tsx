@@ -14,8 +14,10 @@ import { setShowSnackbar } from '../../store/features/appSlice'
 import ToDoForm from '../../components/todo/todoForm'
 import { useToDoPage } from './todoPage.hooks'
 import BackButton from '../../components/backButton/backButton'
+import { useTranslation } from 'react-i18next'
 
 function ToDoPage() {
+    const { t } = useTranslation()
     const { id: idParam } = useParams()
     const { data: todo, error, isFetching } = useGetTodoQuery(idParam as string)
 
@@ -34,7 +36,7 @@ function ToDoPage() {
                     setShowSnackbar({
                         show: true,
                         type: 'success',
-                        text: `Edited Todo: ${todo?.title}`,
+                        text: `${t('edited_todo')}: ${todo?.title}`,
                     })
                 )
                 navigate('/')
@@ -51,10 +53,8 @@ function ToDoPage() {
 
     function onSubmitDelete() {
         if (
-            todoId && 
-            window.confirm(
-                `Do you really want to delete this Todo: ${todo?.title}`
-            )
+            todoId &&
+            window.confirm(`${t('confirm_delete_todo')}: ${todo?.title}`)
         ) {
             deleteTodo(todoId)
                 .unwrap()
@@ -63,7 +63,7 @@ function ToDoPage() {
                         setShowSnackbar({
                             show: true,
                             type: 'info',
-                            text: `Deleted Todo: ${todo?.title}`,
+                            text: `${t('deleted_todo')}: ${todo?.title}`,
                         })
                     )
                 })
@@ -80,15 +80,15 @@ function ToDoPage() {
     }
 
     if (isFetching) {
-        return <ToDoSkeleton /> 
+        return <ToDoSkeleton />
     }
 
     if (error) {
         return (
             <>
-                <BackButton to='/' />
+                <BackButton to="/" />
                 <Typography variant="h5" color="textSecondary">
-                    Todo list not found 😔
+                    {`${t('not_found')} 😔`}
                 </Typography>
             </>
         )

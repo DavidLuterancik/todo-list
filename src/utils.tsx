@@ -1,5 +1,6 @@
 import moment from 'moment'
 import { colors } from '@mui/material'
+import { useTranslation } from 'react-i18next'
 
 export const MIN_TITLE_LENGHT = import.meta.env.VITE_MIN_TITLE_LENGHT
 export const MAX_TITLE_LENGHT = import.meta.env.VITE_MAX_TITLE_LENGHT

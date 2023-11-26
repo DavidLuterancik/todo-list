@@ -1,0 +1,55 @@
+{
+    "Welcome": "Welcome",
+    "Language": "Language",
+    "Dark": "Dark",
+    "app_text": "This is a sample application for ToDo lists.",
+
+    "create_and_manage": "Create and Manage",
+    "create_and_manage_desc": "Multiple ToDo lists to keep track of the tasks.",
+    "keep_track": "Keep track",
+    "keep_track_desc": "Each ToDo list has a title, date, and a set of items with name, deadline and completion.",
+    "persist": "Keep track",
+    "persist_desc": "Store your data on external API to keep track wherever you are.",
+    "task_managmenet": "Happy task management!",
+
+    "Search": "Search",
+    "Sorter": "Sorter",
+    "Create": "Create",
+    "Duplicate": "Duplicate",
+    "Remove": "Remove",
+    "Add_Item": "Add Item",
+    "Edit": "Edit",
+    "Delete": "Delete",
+    "Save": "Save",
+    "Back": "Back",
+    "Item_Status": "Item Status",
+
+    "Newest": "Newest",
+    "Oldest": "Oldest",
+
+    "All": "All",
+    "Active": "Active",
+    "Completed": "Completed",
+
+    "Title": "Title",
+    "Date": "Date",
+    "Name": "Name",
+    "Deadline": "Deadline",
+
+    "cannot_edit": "This Todo cannot be edited",
+    "unsaved_changes": "You have unsaved changes, do you want to leave?",
+    "empty_text": "Empty - change the filter or add more items",
+    "not_found": "Todo list not found ",
+
+    "Todo_Lists": "Todo lists",
+    "About": "About",
+    "Settings": "Settings",
+
+    "edited_todo": "Edited Todo",
+    "deleted_todo": "Deleted Todo",
+    "confirm_delete_todo": "Do you really want to delete this Todo",
+    "Todo": "Todo",
+    "Items": "Items",
+
+    "nothing_text": "Nothing to see here"
+}
