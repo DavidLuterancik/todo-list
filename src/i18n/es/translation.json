@@ -42,5 +42,10 @@
     "confirm_delete_todo": "¿Realmente quieres eliminar este Todo?",
     "Todo": "Hacer",
     "Items": "Elementos",
-    "nothing_text": "Nada que ver aqui"
+    "nothing_text": "Nada que ver aqui",
+    "date_required": "Se requiere fecha",
+    "too_long": "es demasiado largo",
+    "too_short": "debe ser {{length}} o más personajes",
+    "Invalid input": "Entrada inválida",
+    "more": "más"
 }

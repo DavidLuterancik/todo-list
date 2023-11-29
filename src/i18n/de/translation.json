@@ -42,5 +42,10 @@
     "confirm_delete_todo": "Möchten Sie dieses Todo wirklich löschen?",
     "Todo": "Machen",
     "Items": "Artikel",
-    "nothing_text": "Es gibt hier nichts zu sehen"
-  }
+    "nothing_text": "Es gibt hier nichts zu sehen",
+    "date_required": "Datum ist erforderlich",
+    "too_long": "es ist zu lang",
+    "too_short": "muss sein {{length}} oder mehr Zeichen",
+    "Invalid input": "Ungültige Eingabe",
+    "more": "mehr"
+}

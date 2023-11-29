@@ -51,5 +51,10 @@
     "Todo": "Todo",
     "Items": "Items",
 
-    "nothing_text": "Nothing to see here"
+    "nothing_text": "Nothing to see here",
+    "date_required": "Date is required",
+    "too_long": "is too long",
+    "too_short": "must be {{length}} or more characters",
+    "Invalid input": "Invalid input",
+    "more": "more"
 }

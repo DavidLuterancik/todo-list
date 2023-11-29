@@ -17,12 +17,12 @@ import { ContentCopyOutlined } from '@mui/icons-material'
 import { DragIndicator } from '@mui/icons-material'
 import {
     MAX_NAME_LENGHT,
+    MIN_NAME_LENGHT,
     getDeadlineColor,
     getMaxLenght,
     isAfterDeadline,
 } from '../../utils'
 import { useTranslation } from 'react-i18next'
-import { grey } from '@mui/material/colors'
 
 function shouldRenderItem(checked, itemStatus) {
     if (!checked && itemStatus === ItemStatus.Active) {
@@ -109,7 +109,9 @@ export default function TodoListItem({
                             label={t('Name')}
                             helperText={
                                 error
-                                    ? error.message
+                                    ? `${t('Name')} ${t(error?.message || '', {
+                                          length: MIN_NAME_LENGHT,
+                                      })}`
                                     : getMaxLenght(
                                           value.length,
                                           MAX_NAME_LENGHT
@@ -166,7 +168,9 @@ export default function TodoListItem({
                                     onBlur,
                                     name,
                                     error: !!fieldState?.error,
-                                    helperText: fieldState?.error?.message,
+                                    helperText: t(
+                                        fieldState?.error?.message || ''
+                                    ),
                                 },
                             }}
                         />

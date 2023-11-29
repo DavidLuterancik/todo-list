@@ -32,7 +32,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 import ActiveSelect from '../activeSelect/activeSelect'
 import TodoListItem from './todoListItem'
 import BackButton from '../backButton/backButton'
-import { MAX_TITLE_LENGHT, getMaxLenght } from '../../utils'
+import { MAX_TITLE_LENGHT, MIN_TITLE_LENGHT, getMaxLenght } from '../../utils'
 import { useTranslation } from 'react-i18next'
 
 const DATE_FORMAT = import.meta.env.VITE_DATE_FORMAT
@@ -190,7 +190,9 @@ const ToDoForm = ({
                             label={t('Title')}
                             helperText={
                                 error
-                                    ? error.message
+                                    ? `${t('Title')} ${t(error?.message || '', {
+                                          length: MIN_TITLE_LENGHT,
+                                      })}`
                                     : getMaxLenght(
                                           value.length,
                                           MAX_TITLE_LENGHT
@@ -224,7 +226,9 @@ const ToDoForm = ({
                                     onBlur,
                                     name,
                                     error: !!fieldState?.error,
-                                    helperText: fieldState?.error?.message,
+                                    helperText: t(
+                                        fieldState?.error?.message || ''
+                                    ),
                                 },
                             }}
                         />
